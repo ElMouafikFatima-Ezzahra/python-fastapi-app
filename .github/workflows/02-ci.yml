@@ -77,3 +77,9 @@ jobs:
           echo "Runner OS: ${{ runner.os }}"
           echo "Head ref: ${{ github.head_ref }}"
           echo "Base ref: ${{ github.base_ref }}"
+
+      - name: Display full GitHub JSON
+        env:
+          GITHUB_CONTEXT_JSON: ${{ toJson(github) }}
+        run: |
+          printf '%s\n' "$GITHUB_CONTEXT_JSON"
