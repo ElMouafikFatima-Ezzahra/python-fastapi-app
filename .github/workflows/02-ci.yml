@@ -64,3 +64,16 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+      - name: Display GitHub contexts
+        env:
+          APP_NAME: fastapi-starter
+        run: |
+          echo "Application: $APP_NAME"
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "Base ref: ${{ github.base_ref }}"
