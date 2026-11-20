@@ -1,0 +1,10 @@
+name: Docker Hello
+description: Greet the recipient from a Docker container
+inputs:
+  who:
+    description: Greeting recipient
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  args: ["${{ inputs.who }}"]
