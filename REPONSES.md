@@ -15,3 +15,9 @@ GitHub résout `./.github/actions/build-info` à partir de l’espace de travail
 ## Q7. Pourquoi indiquer `shell: bash` dans chaque step `run` de l’action composite ?
 
 Le schéma d’une action composite impose à chaque step `run` de préciser son interpréteur. `shell: bash` indique au runner comment exécuter le script, quel que soit le workflow qui appelle l’action.
+
+## Partie 4 — Durées mesurées sur GitHub Actions
+
+La step `Run build info action` a commencé et s’est terminée à `18:04:11 UTC`. GitHub affiche **0 s** à la précision de la seconde. Elle a produit `my-app-1.0.0`.
+
+La step `Run Docker hello action` a pris **4 s** (`18:04:16` à `18:04:20 UTC`). Ces quatre secondes comprennent la construction de l’image et le lancement du conteneur qui a affiché `Hello, world`. L’action composite exécute ses commandes directement sur le runner. [Exécution GitHub Actions](https://github.com/ElMouafikFatima-Ezzahra/python-fastapi-app/actions/runs/44789237673)
