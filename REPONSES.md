@@ -6,7 +6,7 @@ Le runner lit le fichier `GITHUB_ENV` à la fin de la step qui y écrit, puis aj
 
 ## Q2. Quelle est la portée de `GITHUB_ENV` ?
 
-La portée se limite aux steps suivantes du job qui a écrit dans `GITHUB_ENV`. Le job `verify-env` démarre avec son propre environnement. Le résultat attendu dans sa step `Print APP_NAME` est donc `APP_NAME=`, avec une valeur vide.
+La portée se limite aux steps suivantes du job qui a écrit dans `GITHUB_ENV`. Le job `verify-env` démarre avec son propre environnement. Sur GitHub Actions, sa step `Print APP_NAME` a affiché `APP_NAME=`, avec une valeur vide. [Exécution](https://github.com/ElMouafikFatima-Ezzahra/python-fastapi-app/actions/runs/44788425804)
 
 ## Q3. Que se passe-t-il si deux écritures utilisent `>` dans `GITHUB_OUTPUT` ?
 
@@ -18,4 +18,4 @@ Les variables de `GITHUB_ENV` restent dans le job qui les définit. La step `ver
 
 ## Q5. Que se passe-t-il si on retire `needs: build` ?
 
-`deploy` perd sa dépendance à `build` et la référence `needs.build.outputs.full_version` sort de son contexte. Dans l’essai local sans `needs: build`, `actionlint` a signalé que la propriété `build` était absente de `needs`. La vérification a réussi après restauration de la dépendance.
+`deploy` peut démarrer indépendamment de `build` et ne reçoit plus sa sortie. Dans l’essai GitHub Actions sans `needs: build`, le workflow a réussi, mais `deploy` a affiché `Deploying  to staging`, avec une version vide. Avec la dépendance, il a affiché `Deploying 1.0.0-2026-11-20 to staging`. J’ai ensuite rétabli `needs: build` sur la branche. [Sans dépendance](https://github.com/ElMouafikFatima-Ezzahra/python-fastapi-app/actions/runs/44788731741) · [Avec dépendance](https://github.com/ElMouafikFatima-Ezzahra/python-fastapi-app/actions/runs/44788425804)
